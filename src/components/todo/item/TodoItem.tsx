@@ -35,6 +35,13 @@ export const TodoItem = ({
       completed_at: event.target.checked ? new Date().toISOString() : null,
     });
   };
+  const priorityList = [
+    "!text-gray-500",
+    "!text-red-500",
+    "!text-yellow-500",
+    "!text-blue-500",
+    "!text-gray-500",
+  ];
 
   return (
     <ListItem
@@ -54,7 +61,9 @@ export const TodoItem = ({
             checked={todo.completed}
             onChange={handleCompleted}
             size="small"
-            className="!p-0 !pr-1 !text-gray-500 hover:bg-transparent"
+            className={`!p-0 !pr-1 ${
+              priorityList[todo.priority || 4]
+            } hover:bg-transparent`}
           />
         </div>
         {isEditing ? (
@@ -71,7 +80,7 @@ export const TodoItem = ({
             {todo.description}
           </Typography>
         )}
-        <div className="w-5 h-4">
+        <div className="w-5 h-4 ml-auto">
           {hovered && <EditTodoItem todo={todo} handleRename={handleRename} />}
         </div>
       </div>

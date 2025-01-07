@@ -11,7 +11,9 @@ export const EmptyList = ({ todoList }: Props) => {
   return (
     <div>
       <div className="p-6 m-6 flex flex-col items-center justify-center gap-4">
-        <Typography variant="h6">Add a task here</Typography>
+        <Typography variant="h6" className="!text-white">
+          Add a task here
+        </Typography>
         {!inputShow && (
           <Button variant="contained" onClick={() => setInputShow(true)}>
             New Task

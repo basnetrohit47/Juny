@@ -33,7 +33,7 @@ export const addTodoItems = async (newTodoList: CreateTodoField): Promise<void> 
     const todoWithDate: CreateTodoField = {
         ...newTodoList,
         completed: newTodoList.completed ?? false,  // Set false if not provided
-        priority: newTodoList.priority ?? 3, 
+        priority: newTodoList.priority ?? 4, 
         created_at: new Date().toISOString(),
         completed_at:newTodoList.completed_at??null,
         position: max + 1, // Add to the end
@@ -94,10 +94,27 @@ export const updateTodo = async (todo:TodoField)=>{
     });
 
     return new Promise((resolve, reject) => {
-        const request = store.put(todo);
+        try{
+            const getRequest = store.get(todo.id);
+            getRequest.onsuccess = () => {
+            const existingTodo = getRequest.result;
+
+        if (!existingTodo) {
+          return reject(new Error("Todo item not found."));
+        }
+        const updatedTodo = { ...existingTodo, ...todo };
+        const updateRequest = store.put(updatedTodo);
+        updateRequest.onsuccess = () => resolve(updateRequest.result);
+        updateRequest.onerror = () => reject(updateRequest.error);
+
+    }
+    getRequest.onerror = () => reject(getRequest.error);
+        }
         
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
+        catch(err){
+            reject(err);
+        }
+       
     });
 }
 
