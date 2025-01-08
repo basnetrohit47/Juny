@@ -14,7 +14,7 @@ export const getImage =async ()=>{
    if(getStoredPhoto){
       return getStoredPhoto;
    }
-   const response = await apiClient<ImageField>({url:`api/photo`});
+   const response = await apiClient<ImageField>({url:`/photo`});
      setStoreValue<ImageField>(key,response)
      await clearOldestImage(); 
 

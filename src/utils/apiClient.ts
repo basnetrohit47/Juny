@@ -4,7 +4,7 @@ import { getEnvironment } from "./getEnvironment";
 
 const env = getEnvironment();
 
-const API_BASE_URL = env === "chrome"?"http://api.getjuny.com/":"http://0.0.0.0:5000/";
+const API_BASE_URL = env === "chrome"?"http://api.getjuny.com":"http://0.0.0.0:5000";
 
 
 interface ApiConfig extends AxiosRequestConfig{
