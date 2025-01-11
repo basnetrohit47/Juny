@@ -10,11 +10,10 @@
       
     "description": "Make your tab beautiful and productive with favourite sites and todo list items ",
    
-    "permissions": ["storage",
-    "tabs"],
+    "permissions": ["storage","search"],
    
     "host_permissions": [
-    "https://api.getjuny.com/*"
+    "https://api.getjuny.com/photo"
   ],
     "chrome_url_overrides": {
       "newtab": "index.html"

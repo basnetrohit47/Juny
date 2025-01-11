@@ -1,20 +1,15 @@
 import { InputAdornment, TextField } from "@mui/material";
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
+
 export const SearchComponent = () => {
   const [query, setQuery] = useState("");
 
-  const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      if (query) {
-        // Redirect to Google search results
-        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(
-          query
-        )}`;
-      }
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && query.trim()) {
+      chrome.search.query({ text: query.trim(), disposition: "CURRENT_TAB" });
     }
   };
-
   return (
     <div className="flex justify-center items-center ">
       <div
@@ -33,11 +28,11 @@ export const SearchComponent = () => {
           sx={{
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
-                borderColor: "rgba(255,255,255,0.8)", // this is the original border color
+                borderColor: "rgba(255,255,255,0.8)",
                 borderRadius: "12px",
               },
               "&:hover fieldset": {
-                borderColor: "rgba(255,255,255,0.8)", // use the original border color on hover
+                borderColor: "rgba(255,255,255,0.8)",
               },
               "& .MuiInputBase-input::placeholder": {
                 color: "white",
@@ -50,18 +45,7 @@ export const SearchComponent = () => {
             input: {
               startAdornment: (
                 <InputAdornment position="start">
-                  <img
-                    src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg"
-                    alt=""
-                    className="w-5 h-5"
-                  />
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="end">
-                  <SearchIcon
-                    sx={{ fontSize: 34, paddingBottom: "5px", color: "white" }}
-                  />
+                  <SearchIcon sx={{ color: "white" }} />
                 </InputAdornment>
               ),
             },
