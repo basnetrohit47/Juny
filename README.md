@@ -21,6 +21,16 @@ This is a Chrome Extension built with React, TypeScript, React Query, Zustand, a
 - **Tailwind CSS**: Utility-first CSS framework for styling.
 - **Material UI (MUI)**: React UI components for modern, responsive layouts.
 
+---
+
+## 📸 Demo
+
+### Juny Chrome Extension:
+
+![Juny Demo](public/juny-screen.png)
+
+---
+
 ## Installation
 
 To get started with the extension, follow these steps:
